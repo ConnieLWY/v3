@@ -78,6 +78,7 @@ def drawPred(classId, conf, left, top, right, bottom):
                 dict = {'date': date, 'time': time, 'license plate': no}
                 df = pd.DataFrame(dict)
                 df.to_csv('/home/pi/v3/' + str(d.replace(':', '.')) + '.csv')
+                print(str(d) + ' ' + str(t) + ' ' + str(text))
                 
                     
                     
@@ -91,7 +92,7 @@ def drawPred(classId, conf, left, top, right, bottom):
                 dict = {'date': date, 'time': time, 'license plate': no}
                 df = pd.DataFrame(dict)
                 df.to_csv('/home/pi/v3/' + str(d.replace(':', '.')) + '.csv')
-    print(str(d) + ' ' + str(t))
+                print(str(d) + ' ' + str(t) + ' ' + str(text))
     
 
     # label = '%.2f' % conf
