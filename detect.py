@@ -32,7 +32,7 @@ parser.add_argument('--video', help='Path to video file.')
 args = parser.parse_args()
 
 # Load names of classes
-classesFile = "/home/pi/v2/obj.names";
+classesFile = "/home/pi/v3/obj.names";
 
 classes = None
 with open(classesFile, 'rt') as f:
@@ -40,8 +40,8 @@ with open(classesFile, 'rt') as f:
 
 # Give the configuration and weight files for the model and load the network using them.
 
-modelConfiguration = "/home/pi/v2/yolov4-custom.cfg";
-modelWeights = "/home/pi/v2/yolov4-custom_last.weights";
+modelConfiguration = "/home/pi/v3/yolov4-custom.cfg";
+modelWeights = "/home/pi/v3/yolov4-custom_last.weights";
 
 net = cv.dnn.readNetFromDarknet(modelConfiguration, modelWeights)
 net.setPreferableBackend(cv.dnn.DNN_BACKEND_OPENCV)
@@ -77,7 +77,7 @@ def drawPred(classId, conf, left, top, right, bottom):
                 no.append(text)
                 dict = {'date': date, 'time': time, 'license plate': no}
                 df = pd.DataFrame(dict)
-                df.to_csv('/home/pi/v2/' + str(d.replace(':', '.')) + '.csv')
+                df.to_csv('/home/pi/v3/' + str(d.replace(':', '.')) + '.csv')
                 
                     
                     
@@ -90,7 +90,7 @@ def drawPred(classId, conf, left, top, right, bottom):
                 no.append(text)
                 dict = {'date': date, 'time': time, 'license plate': no}
                 df = pd.DataFrame(dict)
-                df.to_csv('/home/pi/v2/' + str(d.replace(':', '.')) + '.csv')
+                df.to_csv('/home/pi/v3/' + str(d.replace(':', '.')) + '.csv')
         print(str(d) + ' ' + str(t))
     
 
@@ -166,14 +166,14 @@ if (args.image):
         print("Input image file ", args.image, " doesn't exist")
         sys.exit(1)
     cap = cv.VideoCapture(args.image)
-    outputFile = '/home/pi/v2/' + args.image[:-4]+'_yolo_out_py.jpg'
+    outputFile = '/home/pi/v3/' + args.image[:-4]+'_yolo_out_py.jpg'
 elif (args.video):
     # Open the video file
     if not os.path.isfile(args.video):
         print("Input video file ", args.video, " doesn't exist")
         sys.exit(1)
     cap = cv.VideoCapture(args.video)
-    outputFile = '/home/pi/v2/' + args.video[:-4]+'_yolo_out_py.avi'
+    outputFile = '/home/pi/v3/' + args.video[:-4]+'_yolo_out_py.avi'
 else:                                                                                        
     # Webcam input
     cap = cv.VideoCapture(0)
